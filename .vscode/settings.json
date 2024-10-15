@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "sllist.h": "c",
+        "stdbool.h": "c",
+        "dequelist.h": "c",
+        "stacklist.h": "c",
+        "stdlib.h": "c",
+        "string.h": "c",
+        "ctype.h": "c",
+        "airport.h": "c",
+        "tbst.h": "c"
+    }
+}
