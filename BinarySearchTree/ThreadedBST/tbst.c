@@ -139,13 +139,16 @@ NODE* Delete(NODE* root){
     if(r)printf("right\n%d\n",node->right->data);
     // //CASE A:
     // if (!l&&!r){
-        
     // }
-    // //CASE
+    // //CASE B1
     // elif(!l&&r){
-
     // }
-
+    // //CASE B2
+    // elif(l&&!r){
+    // }
+    // //CASE C
+    // elif(l&&r){
+    // }
 }
 
 
