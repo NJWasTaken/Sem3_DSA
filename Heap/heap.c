@@ -14,11 +14,11 @@ void MaxHeapify(struct Heap *heap, int i) {
     int l = 2*i;  
     int r = 2*i + 1; 
 
-    if (l <= heap->size && heap->arr[l] > heap->arr[big])
+    if (l <= heap->size && heap->arr[l] < heap->arr[big])
         big = l;
 
 
-    if (r <= heap->size && heap->arr[r] > heap->arr[big])
+    if (r <= heap->size && heap->arr[r] < heap->arr[big])
         big = r;
 
     if (big != i) {
@@ -52,7 +52,7 @@ void Insert(struct Heap *heap, int num) {
     int i = heap->size;
 
 
-    while (i > 1 && heap->arr[i / 2] < heap->arr[i]) {
+    while (i > 1 && heap->arr[i / 2] > heap->arr[i]) {
         int temp = heap->arr[i];
         heap->arr[i] = heap->arr[i / 2];
         heap->arr[i / 2] = temp;
