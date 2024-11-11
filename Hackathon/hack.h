@@ -18,5 +18,13 @@ typedef struct zone{
 typedef struct rescued{
     PERSON *person;
     int rank;
-    RESCUED *next;
+    struct rescued *next;
 } RESCUED;
+
+ZONE* newZone(int);
+ZONE* enqueueZone(ZONE *);
+void allocate(ZONE* );
+void rescue(ZONE*,RESCUED*);
+void printZones(ZONE*);
+void printRescued(RESCUED*);
+void freeAll(ZONE*, RESCUED*);

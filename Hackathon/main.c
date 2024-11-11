@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h> 
+#include <ctype.h>
 #include "hack.h"
 
 int main(){
@@ -13,12 +14,13 @@ int main(){
     char option;
     
     while(1){
-        printf("----------------------------------------\nAdd new zone - Z\nAllocate resources to zones - A\nRescue people - P\nDisplay - D\n----------------------------------------\nEnter option: ");
+        printf("----------------------------------------\nAdd new zone - Z\nAllocate resources to zones - A\nRescue people - P\nDisplay - D\nQuit - Q\n----------------------------------------\nEnter option: ");
         scanf(" %c", &option);
         option = toupper(option);
+        if (option=='Q')break;
         switch(option){
             case 'Z':
-                zone = enqueueZone();
+                zone = enqueueZone(zone);
             break;
 
             case 'A':
