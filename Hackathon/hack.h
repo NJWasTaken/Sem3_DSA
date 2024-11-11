@@ -10,6 +10,7 @@ typedef struct zone{
     int priority;
     int resources;
     int name;
+    int population;
     struct zone *next;
     PERSON *people;
 } ZONE;
