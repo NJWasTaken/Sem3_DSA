@@ -7,7 +7,8 @@
 
 int main(){
     int resources;
-    printf("Enter total number of resources: ");
+    printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nWelcome to ROS! (Rescue Operating System)\nby SegFault: Paranshu, Vivian, Prateek & Noel.\nThis program aims to efficiently manage resources and people amongst disaster zones.\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
+    printf("Enter total number of resources available: ");
     scanf("%d",&resources);
     ZONE *zone = newZone(resources);
     RESCUED *resq = NULL;
@@ -24,7 +25,7 @@ int main(){
             break;
 
             case 'A':
-                allocate(zone);
+                allocate(zone, resources);
             break;
 
             case 'P':

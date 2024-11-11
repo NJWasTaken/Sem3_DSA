@@ -61,25 +61,53 @@ ZONE* enqueueZone(ZONE *head){
     return head;
 }
 
-void allocate(ZONE* zone){
-    if(!zone){
+int totalZones(ZONE* zone){
+    int count;
+    ZONE* node = zone;
+    for (count = 0; node!=NULL; count++) node=node->next;
+    return count;
+}
+
+void allocate(ZONE* zone, int resources) {
+    if (!zone || !zone->next) {
         printf("No zones available.\n");
         return;
     }
-    
-    int total_resources = zone->resources;
-    ZONE* current = zone->next;  
+
+    int size = totalZones(zone);
+    if (resources < size) {
+        printf("Too few resources to allocate to %d zones.\n", size);
+        return;
+    }
+
+    ZONE* current = zone->next;
     int total_priority_sum = 0;
-    
-    while(current){
-        total_priority_sum += (6 - current->priority);  
+
+    // Calculate the sum of priority inversions
+    while (current) {
+        total_priority_sum += (6 - current->priority);
         current = current->next;
     }
-    
+
+    // Allocate resources based on priority
     current = zone->next;
-    while(current){
-        current->resources = (total_resources*(6 - current->priority))/total_priority_sum;
+    while (current) {
+        current->resources = (resources * (6 - current->priority)) / total_priority_sum;
         printf("Zone %d allocated %d resources\n", current->name, current->resources);
+        current = current->next;
+    }
+
+    // Reallocate resources to ensure no zone has 0 resources
+    current = zone->next;
+    while (current) {
+        if (current->resources == 0 && current->population > 0) {
+            int remaining_resources = resources - zone->resources;
+            if (remaining_resources > 0) {
+                current->resources = 1;
+                zone->resources--;
+                printf("Allocated 1 resource to Zone %d\n", current->name);
+            }
+        }
         current = current->next;
     }
 }
