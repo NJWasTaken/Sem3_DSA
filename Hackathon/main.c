@@ -6,10 +6,15 @@
 #include "hack.h"
 
 int main(){
-    int resources;
     printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nWelcome to ROS! (Rescue Operating System)\nby SegFault: Paranshu, Vivian, Prateek & Noel.\nThis program aims to efficiently manage resources and people amongst disaster zones.\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
-    printf("Enter total number of resources available: ");
-    scanf("%d",&resources);
+    int resources;
+    while(1){
+        printf("Enter total number of resources available: ");
+        scanf("%d",&resources);
+        if (resources>0)break;
+        else printf("Invalid entry.\n");
+    }
+    
     ZONE *zone = newZone(resources);
     RESCUED *resq = NULL;
     char option;
@@ -25,7 +30,7 @@ int main(){
             break;
 
             case 'A':
-                allocate(zone, resources);
+                allocate(zone);
             break;
 
             case 'P':

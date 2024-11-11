@@ -23,8 +23,9 @@ typedef struct rescued{
 
 ZONE* newZone(int);
 ZONE* enqueueZone(ZONE *);
-void allocate(ZONE*,int);
+void allocate(ZONE*);
 RESCUED* rescue(ZONE*,RESCUED*,int);
 void printZones(ZONE*);
 void printRescued(RESCUED*);
 void freeAll(ZONE*, RESCUED*);
+bool dupeName(int, ZONE*);
