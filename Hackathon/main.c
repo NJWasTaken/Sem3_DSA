@@ -28,7 +28,10 @@ int main(){
             break;
 
             case 'P':
-                resq = rescue(zone, resq);
+                int limit;
+                printf("Set rescue limit: ");
+                scanf("%d",&limit);
+                resq = rescue(zone, resq, limit);
             break;
 
             case 'D':
