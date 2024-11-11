@@ -28,7 +28,7 @@ int main(){
             break;
 
             case 'P':
-                rescue(zone, resq);
+                resq = rescue(zone, resq);
             break;
 
             case 'D':

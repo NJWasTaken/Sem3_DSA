@@ -86,10 +86,10 @@ void allocate(ZONE* zone) {
     }
 }
 
-void rescue(ZONE* zone, RESCUED* resq) {
+RESCUED* rescue(ZONE* zone, RESCUED* resq) {
     if (!zone || !zone->next) {
         printf("No zones available.\n");
-        return;
+        return resq;
     }
     
     // Find highest priority zone with resources
@@ -107,7 +107,7 @@ void rescue(ZONE* zone, RESCUED* resq) {
     
     if (!best_zone) {
         printf("No zones available for rescue operations.\n");
-        return;
+        return resq;
     }
     
     // Rescue people from the chosen zone
@@ -138,6 +138,7 @@ void rescue(ZONE* zone, RESCUED* resq) {
         }
         person = person->next;
     }
+    return resq;
 }
 
 void printZones(ZONE* zone) {
