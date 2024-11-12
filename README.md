@@ -1,20 +1,33 @@
-# Data Structures and its Applications (Semester 3 @ PESU)
-This is a repository to collect programs for all (or most of) the data structures taught in the course UE23CS252A in the 3rd Semester of CSE &amp; CSE (AI &amp; ML) in PES University.
+# Semester 3 DSA Code Repository
 
-As of now, the repository contains codes for:
-- Singly Linked Lists
-- Doubly Linked Lists
-- Circularly Linked Lists
-- Stacks
-- Queues
-- Deques
-- Priority Queues
-- Special Cases like Josephus Problem, Case Studies, Hackathons, etc.
-- Trees
-- Expression Trees
-- Binary Search Trees
-- Threaded BSTs
-- Tries
-- Graphs
+Welcome to the **Semester 3 DSA Code Repository**! This repo contains all the code and concepts explored in my Semester 3 Data Structures and Algorithms (DSA) course at PES University. 
 
-Please note there are several errors, missing blocks and inefficiencies in the programs and people are welcome to contribute.
+> ⚠️ **Disclaimer:** This is a learning repository, so some code here may not be 100% correct or optimized. Please feel free to raise issues, make corrections, and contribute wherever you see opportunities for improvement. 
+
+## Topics Covered
+
+This repository covers a wide array of DSA topics, including but not limited to:
+
+- **Basic Data Structures**
+  - Arrays
+  - Linked Lists
+  - Stacks and Queues
+- **Advanced Data Structures**
+  - Trees (Binary Trees, AVL Trees)
+  - Heaps
+  - Graphs (Adjacency Matrix, BFS, DFS)
+- **Sorting Algorithms**
+- **Searching Algorithms**
+- **Dynamic Programming**
+- **Other Algorithms**
+  - Case Studies
+  - Hackathons
+  - Special Cases (Josephus Problem)
+
+## Contributing
+
+Contributions are welcome! If you spot any mistakes or have suggestions for improvements, feel free to:
+- **Raise an issue:** For bugs, errors, or enhancements.
+- **Open a pull request:** If you've improved or corrected any code.
+
+Happy coding! 
