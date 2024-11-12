@@ -9,10 +9,12 @@ As of now, the repository contains codes for:
 - Queues
 - Deques
 - Priority Queues
-- Special Cases like Josephus Problem, etc.
+- Special Cases like Josephus Problem, Case Studies, Hackathons, etc.
 - Trees
 - Expression Trees
 - Binary Search Trees
 - Threaded BSTs
+- Tries
+- Graphs
 
 Please note there are several errors, missing blocks and inefficiencies in the programs and people are welcome to contribute.
