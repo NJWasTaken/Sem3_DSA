@@ -10,9 +10,13 @@ int main(){
     int resources;
     while(1){
         printf("Enter total number of resources available: ");
-        scanf("%d",&resources);
-        if (resources>0)break;
-        else printf("Invalid entry.\n");
+        int res = scanf("%d",&resources);
+        if (res!=1 || resources<0){
+            printf("Invalid entry.\n");
+            int ch;
+            while ((ch = getchar()) != '\n' && ch != EOF);
+        }
+        else break;
     }
     
     ZONE *zone = newZone(resources);
@@ -23,7 +27,11 @@ int main(){
         printf("----------------------------------------\nAdd new zone - Z\nAllocate resources to zones - A\nRescue people - P\nDisplay - D\nQuit - Q\n----------------------------------------\nEnter option: ");
         scanf(" %c", &option);
         option = toupper(option);
-        if (option=='Q')break;
+        if (option=='Q'){
+            remainingPpl(zone);
+            freeAll(zone, resq);
+            break;
+        }
         switch(option){
             case 'Z':
                 zone = enqueueZone(zone);
@@ -35,8 +43,17 @@ int main(){
 
             case 'P':
                 int limit;
-                printf("Set rescue limit: ");
-                scanf("%d",&limit);
+                while(1){
+                    printf("Set rescue limit: ");
+                    int res = scanf("%d",&limit);
+                    if (res!=1 || limit<0){
+                        printf("Invalid entry.\n");
+                        int ch;
+                        while ((ch = getchar()) != '\n' && ch != EOF);
+                    }
+                    else break;
+                }
+
                 resq = rescue(zone, resq, limit);
             break;
 
@@ -55,6 +72,5 @@ int main(){
             break;
         }
     }
-    freeAll(zone, resq);
     return 0;
 }

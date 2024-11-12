@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
 #include "hack.h"
@@ -35,20 +36,38 @@ ZONE* enqueueZone(ZONE *head){
     
     while(1){
         printf("Enter zone number: ");
-        scanf("%d", &new_zone->name);
+        int res = scanf("%d", &new_zone->name);
         if (dupeName(new_zone->name,head))printf("Zone already exists.\n");
+        else if (res!=1){
+            printf("Invalid entry.\n");
+            int ch;
+            while ((ch = getchar()) != '\n' && ch != EOF);
+        }
         else break;
     }
-    printf("Enter zone priority (1-5): ");
-    scanf("%d", &new_zone->priority);
-    while(new_zone->priority<1 || new_zone->priority> 5){
-        printf("Invalid priority. Enter priority (1-5): ");
-        scanf("%d", &new_zone->priority);
+
+    while(1){
+        printf("Enter zone priority (1-5): ");
+        int res1 = scanf("%d", &new_zone->priority);
+        if (res1!=1 || new_zone->priority<1 || new_zone->priority>5){
+            printf("Invalid entry.\n");
+            int ch1;
+            while ((ch1 = getchar()) != '\n' && ch1 != EOF);
+        }
+        else break;
     }
     
-    printf("Enter number of people in zone: ");
-    scanf("%d", &new_zone->population);
-    
+    while(1){
+        printf("Enter number of people in zone: ");
+        int res2 = scanf("%d", &new_zone->population);
+        if (res2!=1 || new_zone->population<0){
+            printf("Invalid entry.\n");
+            int ch2;
+            while ((ch2 = getchar()) != '\n' && ch2 != EOF);
+        }
+        else break;
+    }
+
     new_zone->people = NULL;
     new_zone->resources = 0;
     
@@ -77,6 +96,42 @@ ZONE* enqueueZone(ZONE *head){
     return head;
 }
 
+
+void checkForZeros(ZONE* zone){
+    if (!zone || !zone->next) return;
+    
+    ZONE* current;
+    bool changes_made = true;
+    
+    while(changes_made){
+        changes_made = false;
+        current = zone->next;
+        while (current){
+            if (current->resources==0 && current->population>0){
+
+                ZONE* node = zone->next;  
+                ZONE* best = NULL;
+                
+                while (node){
+                    if (node->priority<current->priority && node->resources>0 && (!best || node->priority > best->priority)){
+                        best = node;
+                    }
+                    node = node->next;
+                }
+                
+                if (best){
+                    best->resources--;
+                    current->resources++;
+                    changes_made = true;
+                    printf("Reallocating 1 resource from Zone %d to Zone %d\n", best->name, current->name);
+                }
+            }
+            current = current->next;
+        }
+    }
+}
+
+
 void allocate(ZONE* zone){
     if(!zone){
         printf("No zones available.\n");
@@ -98,6 +153,8 @@ void allocate(ZONE* zone){
         printf("Zone %d allocated %d resources\n", current->name, current->resources);
         current = current->next;
     }
+
+    checkForZeros(zone);
 }
 
 //Rescuing <limit> number of ppl from each zone based on priority
@@ -185,6 +242,7 @@ void printRescued(RESCUED* resq){
 }
 
 void freeAll(ZONE* zone, RESCUED* resq){
+    printf("Freeing allocated memory.\n");
     while(zone){
         ZONE* next_zone = zone->next;
         PERSON* person = zone->people;
@@ -201,5 +259,30 @@ void freeAll(ZONE* zone, RESCUED* resq){
         RESCUED* next = resq->next;
         free(resq);
         resq = next;
+    }
+}
+
+void remainingPpl(ZONE* zone){
+    if(!zone || !zone->next){  
+        return;
+    }
+
+    printf("Checking for remaining people...\n");
+    ZONE* current = zone->next;  
+    bool flag = false;
+
+    while(current){
+        if(current->population > 0){
+            printf("%d people could not be rescued from zone %d\n", 
+                   current->population, current->name);
+            flag = true;
+        }
+        current = current->next;
+    }
+
+    if(!flag){
+        printf("Everybody saved! Good job!\n");
+    } else{
+        printf("Maybe increase your resource budget next time.\n");
     }
 }

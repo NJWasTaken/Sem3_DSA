@@ -1,5 +1,3 @@
-#include <stdbool.h>
-
 typedef struct person{
     char name[20];
     bool rescued;
@@ -29,3 +27,5 @@ void printZones(ZONE*);
 void printRescued(RESCUED*);
 void freeAll(ZONE*, RESCUED*);
 bool dupeName(int, ZONE*);
+void remainingPpl(ZONE*);
+void checkForZeros(ZONE*);
