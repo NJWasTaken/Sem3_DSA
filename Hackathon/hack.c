@@ -108,55 +108,43 @@ RESCUED* rescue(ZONE* zone, RESCUED* resq, int limit){
         return resq;
     }
 
-    ZONE* current;
+    ZONE* current = zone->next; // start from the first thing
     int rescued_count;
     bool rescue_available = true;
 
     while(rescue_available){
-        rescue_available = false; // reset the thing
-        current = zone->next; // first zone
+        rescue_available = false; // reset the flag
+        current = zone->next; // start from the first zone again
         while(current){
             if(current->resources > 0 && current->population > 0){
                 rescue_available = true; 
 
-                // rescue upto the "limit"
+                // rescue up to the "limit"
                 rescued_count = 0;
                 PERSON* person = current->people;
-                while(person && rescued_count<limit && current->resources>0){
+                while(person && rescued_count < limit && current->resources > 0){
                     if(!person->rescued){
-                        person->rescued = true; // person marked as rescued
+                        person->rescued = true; // mark person as rescued
                         current->resources--;   
-                        current->population--;  //updated other stuff
+                        current->population--;  // update other stuff
                         rescued_count++;
 
-                        // adding the person to rescue list
+                        // add the person to the rescue list
                         RESCUED* new_rescued = (RESCUED*)malloc(sizeof(RESCUED));
                         new_rescued->person = person;
                         new_rescued->rank = count;
                         count++;
-                        new_rescued->next = NULL;
+                        new_rescued->next = resq;
+                        resq = new_rescued;
 
-                        // adding it to rescue list
-                        if(!resq){
-                            resq = new_rescued;
-                        }
-                        else{
-                            RESCUED* curr = resq;
-                            while(curr->next){
-                                curr = curr->next;
-                            }
-                            curr->next = new_rescued;
-                        }
-                        
                         printf("Rescued %s from Zone %d\n", person->name, current->name);
                     }
                     person = person->next;
                 }
             }
-            current = current->next; //next zone in priority - provided its availableee??
+            current = current->next; // move to the next zone
         }
     }
-
     return resq;
 }
 
