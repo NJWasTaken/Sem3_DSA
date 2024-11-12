@@ -108,7 +108,7 @@ RESCUED* rescue(ZONE* zone, RESCUED* resq, int limit){
         return resq;
     }
 
-    ZONE* current = zone->next; // start from the first thing
+    ZONE* current = zone->next; // start from the first zone
     int rescued_count;
     bool rescue_available = true;
 
@@ -126,7 +126,7 @@ RESCUED* rescue(ZONE* zone, RESCUED* resq, int limit){
                     if(!person->rescued){
                         person->rescued = true; // mark person as rescued
                         current->resources--;   
-                        current->population--;  // update other stuff
+                        current->population--;  // update other stats
                         rescued_count++;
 
                         // add the person to the rescue list
@@ -145,6 +145,7 @@ RESCUED* rescue(ZONE* zone, RESCUED* resq, int limit){
             current = current->next; // move to the next zone
         }
     }
+
     return resq;
 }
 
