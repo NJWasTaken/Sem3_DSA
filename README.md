@@ -24,6 +24,12 @@ This repository covers a wide array of DSA topics, including but not limited to:
   - Hackathons
   - Special Cases (Josephus Problem)
 
+## Some Sites I Found Useful
+- [AVL Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html)
+- [Splay Trees](https://www.geeksforgeeks.org/introduction-to-splay-tree-data-structure/)
+- [Quiz Qs](https://www.geeksforgeeks.org/data-structure-gq/)
+- [Some more Qs](https://www.sanfoundry.com/1000-data-structure-questions-answers/)
+
 ## Contributing
 
 Contributions are welcome! If you spot any mistakes or have suggestions for improvements, feel free to:
