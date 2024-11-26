@@ -52,12 +52,28 @@ NODE* find_minimum(NODE* root){
 }
 
 NODE* delete(NODE* root, int value){
-    if (root->val==value){
-
+    NODE *temp, *p;
+    if (root==NULL)return root;
+    if (value > root->val) root->right = delete(root->right,value);
+    else if (value < root->val) root->left = delete(root->left,value);
+    else{
+        if (root->left==NULL){
+            temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right==NULL){
+            temp = root->left;
+            free(root);
+            return temp;
+        }
+        else{
+            p = root->right;
+            while (p->left!=NULL)p=p->left;
+            root->val = p->val;
+            root->right = delnode(root->right, p->val);
+        }
     }
-    else if (value>root->val) root->right = insert(root->right,value);
-    else root->left = insert(root->left,value);
-
     return root;
 }
 

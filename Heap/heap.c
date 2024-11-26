@@ -16,8 +16,6 @@ void MaxHeapify(struct Heap *heap, int i) {
 
     if (l <= heap->size && heap->arr[l] < heap->arr[big])
         big = l;
-
-
     if (r <= heap->size && heap->arr[r] < heap->arr[big])
         big = r;
 
